@@ -1,3 +1,4 @@
+// Modified for GroundCheck QE: product display branding (2026-10-11).
 import { useAuth } from "@/contexts/AuthContext";
 import { useLocation, useNavigate } from "react-router";
 
@@ -30,7 +31,7 @@ export default function Header() {
       <div className="flex items-center justify-between px-6 py-3">
         <div className="flex items-baseline gap-4">
           <span className="font-display text-xl italic leading-none text-bone">
-            Observatory
+            GroundCheck QE
           </span>
           <span className="hidden h-3 w-px bg-rule sm:inline-block" aria-hidden />
           <span className="eyebrow hidden sm:inline-block">LLM Evaluation</span>

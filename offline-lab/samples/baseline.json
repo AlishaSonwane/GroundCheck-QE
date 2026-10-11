@@ -1,0 +1,5 @@
+[
+  {"id":"refund-policy","prompt":"What is the refund period?","context":"Refunds are available within 30 days of purchase.","response":"Refunds are available within 30 days of purchase.","required":["30 days"],"forbidden":["guaranteed"]},
+  {"id":"support-hours","prompt":"When is support available?","context":"Support is available Monday to Friday, 9 to 5.","response":"Support is available Monday to Friday, 9 to 5.","required":["Monday to Friday"],"forbidden":["every day"]},
+  {"id":"data-retention","prompt":"How long is trial data kept?","context":"Trial data is deleted after 7 days.","response":"Trial data is deleted after 7 days.","expected":"Trial data is deleted after 7 days."}
+]

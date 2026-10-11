@@ -1,6 +1,11 @@
+<!-- Modified for GroundCheck QE: project branding and provenance (2026-10-11). -->
 <!-- mcp-name: io.github.awslabs/llm-evaluation-system -->
 
-# Agentic AI-Guided Evaluation Platform
+# GroundCheck QE
+
+**Portfolio maintainer: Alisha.** Original offline extension: MIT licensed under `offline-lab/LICENSE`. Upstream code: Apache-2.0.
+
+A locally adapted LLM evaluation portfolio project based on awslabs/llm-evaluation-system. Original Apache-2.0 license, copyright and third-party notices are preserved. GroundCheck QE is a working product name; the upstream Python package and CLI identifiers remain unchanged. This branding change does not establish production readiness.
 
 An LLM evaluation system where you describe what you want to evaluate in natural language — an expert AI agent handles dataset generation, judge configuration, execution, and analysis end-to-end, and hands you back a PDF report.
 

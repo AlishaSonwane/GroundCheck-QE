@@ -111,3 +111,6 @@ terraform.tfvars
 
 # Local eval log artifacts (synced via S3)
 logs/
+
+# Rebuildable local distribution archives
+deliverables/

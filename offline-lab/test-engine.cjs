@@ -1,0 +1,24 @@
+/* Copyright (c) 2026 Alisha. SPDX-License-Identifier: MIT. */
+const assert=require('node:assert/strict');
+const qe=require('./engine.js');
+const row={id:'one',prompt:'Refund?',response:'30 days',context:'Refund period is 30 days',required:['30 days']};
+const good=qe.evaluate([row]);assert.equal(good[0].pass,true);
+const bad=qe.evaluate([{...row,response:'90 days'}]);assert.equal(bad[0].pass,false);assert.deepEqual(bad[0].missingNumbers,['90']);
+assert.equal(qe.compare(bad,good)[0].status,'Regression');
+assert.equal(qe.compare(good,bad)[0].status,'Improved');
+assert.equal(qe.compare(qe.evaluate([{...row,context:'New policy'}]),good)[0].status,'Changed test');
+assert.equal(qe.compare([],good)[0].status,'Removed case');
+assert.throws(()=>qe.evaluate([row,row]),/unique/);
+assert.throws(()=>qe.evaluate([{...row,required:['']}]),/non-empty/);
+assert.equal(qe.evaluate([{...row,context:''}])[0].coverage,null);
+assert.equal(qe.evaluate([{...row,response:'not guaranteed',forbidden:['guaranteed']}])[0].pass,false);
+assert.equal(qe.compare(qe.evaluate([{...row,expected:'90 days'}]),qe.evaluate([{...row,expected:'30 days'}]))[0].status,'Changed test');
+assert.throws(()=>qe.evaluate([{...row,required:['!!!']}]),/non-empty/);
+const imported=qe.importBaseline({application:'GroundCheck QE',mode:'offline-saved-responses',schemaVersion:2,dataset:[row],results:[{pass:false}]});
+assert.equal(imported[0].pass,true);
+assert.throws(()=>qe.importBaseline({schemaVersion:1}),/schema v2/);
+assert.throws(()=>qe.importBaseline({application:'GroundCheck QE',mode:'offline-saved-responses',schemaVersion:2,dataset:[row,row]}),/unique/);
+assert.equal(qe.compare(bad,good)[0].previousResponse,'30 days');
+assert.equal(qe.evaluate([{...row,response:'130 days'}])[0].pass,false);
+assert.equal(qe.evaluate([{...row,response:'unguaranteed',required:[],forbidden:['guaranteed']}])[0].pass,true);
+console.log('18 offline engine checks passed, including phrase boundaries.');
